@@ -1,9 +1,6 @@
 import * as React from "react";
 import { styled } from "../../theme";
 
-type ButtonProps = {
-  children?: string;
-};
 const ButtonStyled = styled.button`
   background-color: ${props => props.theme.primary.base};
   border: none;
@@ -20,6 +17,6 @@ const ButtonStyled = styled.button`
   }
 `;
 
-export const Button: React.FC<ButtonProps> = ({ children }) => {
+export const Button: React.FC = ({ children }) => {
   return <ButtonStyled>{children}</ButtonStyled>;
 };

@@ -18,7 +18,9 @@
     "test": "react-scripts test",
     "test:coverage": "yarn test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint:fix": "eslint src/**.{ts,tsx} --fix"
+    "lint:fix": "eslint src/**.{ts,tsx} --fix",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -54,6 +56,8 @@
     "husky": "^3.0.3",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
+    "react-docgen-typescript": "^1.12.5",
+    "react-styleguidist": "^9.1.14",
     "styled-components": "^4.3.2"
   }
 }
