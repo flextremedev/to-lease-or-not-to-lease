@@ -1,17 +1,10 @@
-export type Theme = {
-  primary: string;
-  foreground: string;
-  background: string;
-  onPrimary: string;
-  onForeground: string;
-  accent: string;
-  error: string;
-  info: string;
-  success: string;
-  warning: string;
-};
-export const theme: Theme = {
-  primary: "#02A9EA",
+import baseStyled, { ThemedStyledInterface } from "styled-components";
+export const theme = {
+  primary: {
+    lighter: "#40C3F7",
+    base: "#2BB0ED",
+    darker: "#1992D4",
+  },
   foreground: "#FDFFFC",
   background: "#FDFFFC",
   onPrimary: "#FDFFFC",
@@ -22,3 +15,5 @@ export const theme: Theme = {
   success: "#29BF12",
   warning: "#FF9914",
 };
+export type Theme = typeof theme;
+export const styled = baseStyled as ThemedStyledInterface<Theme>;
