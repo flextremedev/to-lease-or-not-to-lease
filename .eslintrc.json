@@ -21,9 +21,11 @@
   "parser": "@typescript-eslint/parser",
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/prefer-interface": "off",
     "no-console": ["error", { "allow": ["warn", "error"] }],
+    "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   }
