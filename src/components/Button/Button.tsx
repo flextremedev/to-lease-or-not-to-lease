@@ -1,6 +1,8 @@
 import * as React from "react";
 import { styled } from "../../theme";
-
+type ButtonProps = {
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
 const ButtonStyled = styled.button`
   background-color: ${props => props.theme.primary.base};
   border: none;
@@ -17,6 +19,6 @@ const ButtonStyled = styled.button`
   }
 `;
 
-export const Button: React.FC = ({ children }) => {
-  return <ButtonStyled>{children}</ButtonStyled>;
+export const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
+  return <ButtonStyled onClick={onClick}>{children}</ButtonStyled>;
 };
