@@ -5,17 +5,24 @@ type ButtonProps = {
 };
 const ButtonStyled = styled.button`
   background-color: ${props => props.theme.primary.base};
-  border: none;
+  border: 2px solid ${props => props.theme.primary.base};
   color: ${props => props.theme.onPrimary};
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
   font-size: 16px;
-  height: 48px;
-  padding: 0px 24px;
+  height: 44px;
+  padding: 0px 20px;
   outline: none;
+  border-radius: 4px;
   :hover {
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   }
   :active {
     background-color: ${props => props.theme.primary.darker};
+  }
+  :focus {
+    border-color: ${props => props.theme.primary.darker};
   }
 `;
 
