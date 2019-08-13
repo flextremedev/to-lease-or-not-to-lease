@@ -8,7 +8,7 @@ export const theme = {
   foreground: "#FFFFFF",
   background: "#FFFFFF",
   onPrimary: "#FFFFFF",
-  onForeground: "#FFFFFF",
+  onForeground: "#000000",
   accent: "#CBD2D9",
   error: "#E12D39",
   info: "#2BB0ED",

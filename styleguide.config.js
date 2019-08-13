@@ -1,10 +1,21 @@
-// styleguide.config.js
 const path = require("path");
 module.exports = {
+  sections: [
+    {
+      name: "Introduction",
+      content: "docs/Readme.md",
+    },
+    {
+      name: "Components",
+      components: "src/components/**/[A-Z]*.tsx",
+    },
+  ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, "src/styleguide/ThemeWrapper"),
   },
-  propsParser: require("react-docgen-typescript").withDefaultConfig().parse,
+  propsParser: require("react-docgen-typescript").withCustomConfig(
+    "./tsconfig.json"
+  ).parse,
   template: {
     head: {
       links: [

@@ -25,7 +25,6 @@ const ButtonStyled = styled.button`
     border-color: ${props => props.theme.primary.darker};
   }
 `;
-
 export const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
   return <ButtonStyled onClick={onClick}>{children}</ButtonStyled>;
 };
