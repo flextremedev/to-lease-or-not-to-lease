@@ -14,6 +14,12 @@ export const theme = {
   info: "#2BB0ED",
   success: "#27AB83",
   warning: "#F0B429",
+  spaces: {
+    s: "4px",
+    m: "8px",
+    l: "16px",
+    xl: "32px",
+  },
 };
 export type Theme = typeof theme;
 export const styled = baseStyled as ThemedStyledInterface<Theme>;
