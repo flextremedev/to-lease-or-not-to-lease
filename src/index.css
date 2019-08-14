@@ -6,6 +6,16 @@ html,
   font-family: "Poppins", sans-serif;
   font-size: 16px;
 }
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
