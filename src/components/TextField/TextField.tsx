@@ -6,6 +6,7 @@ type TextFieldProps = {
   label?: string;
   placeholder?: string;
   value?: string;
+  readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 const InputStyled = styled.input`
@@ -29,15 +30,22 @@ export const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   value,
   onChange,
+  readOnly,
 }) => {
+  if (label && id === undefined) {
+    console.warn(
+      "You should provide an id to provide better accessibility when using a label."
+    );
+  }
   return (
     <FormControl>
-      {label && <Label>{label}</Label>}
+      {label && <Label htmlFor={id}>{label}</Label>}
       <InputStyled
         id={id}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        readOnly={readOnly}
       />
     </FormControl>
   );
