@@ -12,17 +12,19 @@ type TextFieldProps = {
 const InputStyled = styled.input`
   color: ${props => props.theme.onForeground};
   height: 48px;
-  width: 100%;
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   padding: 0px 8px;
   box-sizing: border-box;
 `;
-const FormControl = styled.div`
+type FormControlProps = {
+  label?: string;
+};
+const FormControl = styled.div<FormControlProps>`
   display: flex;
   flex-flow: column nowrap;
-  height: 72px;
   justify-content: space-between;
+  height: ${props => (props.label === undefined ? "auto" : "72px")};
 `;
 export const TextField: React.FC<TextFieldProps> = ({
   id,
@@ -38,7 +40,7 @@ export const TextField: React.FC<TextFieldProps> = ({
     );
   }
   return (
-    <FormControl>
+    <FormControl label={label}>
       {label && <Label htmlFor={id}>{label}</Label>}
       <InputStyled
         id={id}
