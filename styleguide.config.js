@@ -22,7 +22,7 @@ module.exports = {
         {
           rel: "stylesheet",
           href:
-            "https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap",
+            "https://fonts.googleapis.com/css?family=Poppins:400,500,600|Open+Sans&display=swap",
         },
       ],
     },
