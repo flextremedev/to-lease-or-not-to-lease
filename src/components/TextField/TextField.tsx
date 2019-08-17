@@ -8,6 +8,7 @@ type TextFieldProps = {
   value?: string;
   readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  invertLabelColor?: boolean;
 };
 const InputStyled = styled.input`
   background-color: ${props => props.theme.colors.input.background.color};
@@ -38,6 +39,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   value,
   onChange,
   readOnly,
+  invertLabelColor,
 }) => {
   if (label && id === undefined) {
     console.warn(
@@ -46,7 +48,11 @@ export const TextField: React.FC<TextFieldProps> = ({
   }
   return (
     <FormControl label={label}>
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && (
+        <Label htmlFor={id} invertColor={invertLabelColor}>
+          {label}
+        </Label>
+      )}
       <InputStyled
         id={id}
         placeholder={placeholder}

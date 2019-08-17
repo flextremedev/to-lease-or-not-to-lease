@@ -1,7 +1,13 @@
 import { styled } from "../../theme";
-export const Label = styled.label`
+type LabelProps = {
+  invertColor?: boolean;
+};
+export const Label = styled.label<LabelProps>`
   display: inline-block;
-  color: ${props => props.theme.colors.onForeground};
+  color: ${props =>
+    props.invertColor
+      ? props.theme.colors.onForegroundAlt
+      : props.theme.colors.onForeground};
   font-family: ${props => props.theme.fonts.label.fontFamily}, sans-serif;
   font-weight: ${props => props.theme.fonts.label.fontWeight};
   font-size: ${props => props.theme.fonts.label.fontSize};

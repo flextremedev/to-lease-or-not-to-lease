@@ -8,6 +8,12 @@ module.exports = {
     {
       name: "Components",
       components: "src/components/**/[A-Z]*.tsx",
+      ignore: [
+        "src/components/Card/CardFooter.tsx",
+        "src/components/Card/CardBody.tsx",
+        "src/components/Splitscreen/SplitscreenLeft.tsx",
+        "src/components/Splitscreen/SplitscreenRight.tsx",
+      ],
     },
   ],
   styleguideComponents: {
