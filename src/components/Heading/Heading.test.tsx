@@ -18,7 +18,10 @@ describe("Heading", () => {
   });
   it("should render white if prop: invertColor is passed", () => {
     const { getByText } = renderWithTheme(<Heading h={1}>Foo</Heading>);
-    expect(getByText("Foo")).toHaveStyleRule("color", theme.colors.foreground);
+    expect(getByText("Foo")).toHaveStyleRule(
+      "color",
+      theme.colors.onForeground
+    );
     cleanup();
     const { getByText: getByTextNew } = renderWithTheme(
       <Heading h={1} invertColor>
@@ -27,7 +30,7 @@ describe("Heading", () => {
     );
     expect(getByTextNew("Foo")).toHaveStyleRule(
       "color",
-      theme.colors.foregroundAlt
+      theme.colors.onForegroundAlt
     );
   });
 });

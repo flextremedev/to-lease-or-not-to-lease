@@ -16,13 +16,13 @@ const makeHeadingStyled = (h: number) => {
     margin: 0;
     color: ${props =>
       !props.invertColor
-        ? props.theme.colors.foreground
-        : props.theme.colors.foregroundAlt};
+        ? props.theme.colors.onForeground
+        : props.theme.colors.onForegroundAlt};
   `;
 };
 
 export const Heading: React.FC<HeadingProps> = React.memo(
-  ({ h, children, invertColor }) => {
+  ({ h = 1, children, invertColor }) => {
     const Heading = makeHeadingStyled(h);
     return <Heading invertColor={invertColor}>{children}</Heading>;
   }
