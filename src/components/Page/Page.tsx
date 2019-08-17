@@ -5,6 +5,8 @@ export const Page = styled.div`
   flex-flow: column nowrap;
   height: 100%;
   background: rgb(5, 82, 181);
+  align-items: center;
+  padding-top: 100px;
   background: linear-gradient(
     0deg,
     rgba(5, 82, 181, 1) 0%,
