@@ -5,9 +5,8 @@ Button example:
   style={{
     display: "flex",
     flexFlow: "column nowrap",
-    height: "200px",
+    height: "168px",
     justifyContent: "space-between",
-    backgroundColor: "#F5F7FA",
     alignItems: "flex-start",
   }}
 >

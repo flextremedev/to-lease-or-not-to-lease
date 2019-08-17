@@ -11,3 +11,13 @@ export const renderWithTheme = (
       <React.Fragment>{node}</React.Fragment>
     </ThemeProvider>
   );
+export const rerenderWithTheme = (
+  rerender: (ui: React.ReactElement) => void,
+  node: React.ReactNode,
+  theme: Theme = initialTheme
+) =>
+  rerender(
+    <ThemeProvider theme={theme}>
+      <React.Fragment>{node}</React.Fragment>
+    </ThemeProvider>
+  );
