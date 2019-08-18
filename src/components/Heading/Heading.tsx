@@ -1,11 +1,11 @@
 import * as React from "react";
 import { styled } from "../../theme";
 type HeadingProps = {
-  h: 1 | 2;
+  h: 1 | 2 | 3;
   children: string;
   invertColor?: boolean;
 };
-type HeadingType = "h1" | "h2";
+type HeadingType = "h1" | "h2" | "h3";
 const makeHeadingStyled = (h: number) => {
   const headingType = `h${h}` as HeadingType;
   return styled[headingType]<Pick<HeadingProps, "invertColor">>`
