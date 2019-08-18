@@ -1,6 +1,8 @@
 import { styled } from "../../theme";
-
-export const CardFooter = styled.div`
+type CardFooterProps = {
+  expanded?: boolean;
+};
+export const CardFooter = styled.div<CardFooterProps>`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -8,5 +10,9 @@ export const CardFooter = styled.div`
   background-color: ${props => props.theme.colors.neutral};
   box-sizing: border-box;
   width: 100%;
-  min-height: "80px";
+  height: ${props => (props.expanded ? "164px" : "80px")};
+  transition: height 350ms ease;
+  > div:last-of-type {
+    margin-bottom: 0;
+  }
 `;

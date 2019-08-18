@@ -11,6 +11,7 @@ import { Card } from "../components/Card/Card";
 import { Button } from "../components/Button/Button";
 import { TextField } from "../components/TextField/TextField";
 import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
+import { ComparisonRow } from "../components/ComparisonRow/ComparisonRow";
 type FormData = {
   finCarPrice: string;
   finInitialPayment: string;
@@ -37,6 +38,12 @@ export const Home: React.FC = () => {
     leasMonthlyRate: "",
     leasRunTime: "",
   });
+  const [results] = useState([
+    ["Result", "Result", "Result"],
+    ["Result", "Result", "Result"],
+    ["Result", "Result", "Result"],
+    ["Result", "Result", "Result"],
+  ]);
   const handleCalculate = useCallback(() => setShowResult(true), []);
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +52,33 @@ export const Home: React.FC = () => {
     },
     [formData]
   );
+  const renderResults = useCallback(
+    () =>
+      results.map((row: string[], index: number) => {
+        return (
+          <SlideAnimation
+            condition={showResult}
+            yAmount={-index * 37}
+            useAsFrom
+            duration={350}
+            fullWidth
+            key={`${row[1]}${index}`}
+          >
+            <ComparisonRow>
+              {row.map((column: string, index: number) => {
+                return (
+                  <Heading h={3} key={index + " " + column}>
+                    {column}
+                  </Heading>
+                );
+              })}
+            </ComparisonRow>
+          </SlideAnimation>
+        );
+      }),
+    [showResult, results]
+  );
+
   return (
     <Page>
       <Heading h={1} invertColor>
@@ -131,11 +165,13 @@ export const Home: React.FC = () => {
             </SplitscreenRight>
           </Splitscreen>
         </CardBody>
-        <CardFooter>
-          {showResult ? (
-            <Paragraph>This will be the result section!</Paragraph>
-          ) : null}
-          <SlideAnimation condition={showResult} yAmount={100} duration={150}>
+        <CardFooter expanded={showResult}>
+          <SlideAnimation
+            fullWidth={!showResult}
+            condition={showResult}
+            yAmount={156}
+            duration={350}
+          >
             <Button
               fullWidth={!showResult}
               onClick={handleCalculate}
@@ -145,6 +181,9 @@ export const Home: React.FC = () => {
               {showResult ? "Erneut berechnen" : "Berechnen"}
             </Button>
           </SlideAnimation>
+          {showResult ? (
+            <React.Fragment>{renderResults()}</React.Fragment>
+          ) : null}
         </CardFooter>
       </Card>
     </Page>
