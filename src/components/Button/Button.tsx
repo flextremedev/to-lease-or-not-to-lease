@@ -32,14 +32,21 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   outline: none;
   width: ${props => (props.fullWidth ? "100%" : "auto")};
   cursor: pointer;
+  transition: background-color 0.25s ease-in;
+  transition: border-color 0.25s ease-in;
+  transition: color 0.25s ease-in;
   :hover {
     box-shadow: ${props => handleBoxShadow(props, true)};
     text-shadow: ${props => handleTextShadow(props)};
+    text-decoration: ${props =>
+      props.variant === "text" ? "underline" : "none"};
   }
   :focus {
     box-shadow: ${props => handleBoxShadow(props, true)};
     text-shadow: ${props => handleTextShadow(props)};
     border-color: ${props => handleBorder(props, false, true)};
+    text-decoration: ${props =>
+      props.variant === "text" ? "underline" : "none"};
   }
   :active {
     background-color: ${props => handleBackground(props, true)};

@@ -25,6 +25,7 @@ export const theme = {
     m: "8px",
     l: "16px",
     xl: "32px",
+    xxl: "48px",
   },
   fonts: {
     h1: { fontSize: "3rem", fontWeight: 600, fontFamily: "Poppins" },

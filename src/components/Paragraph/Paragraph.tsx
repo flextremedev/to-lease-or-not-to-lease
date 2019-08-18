@@ -11,5 +11,6 @@ export const Paragraph = styled.p<ParagraphProps>`
       ? props.theme.colors.onForeground
       : props.theme.colors.onForegroundAlt};
   margin: 0;
+  margin-bottom: ${props => props.theme.spaces.xl};
   padding: 0;
 `;

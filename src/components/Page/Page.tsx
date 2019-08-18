@@ -6,7 +6,8 @@ export const Page = styled.div`
   height: 100%;
   background: rgb(5, 82, 181);
   align-items: center;
-  padding-top: 100px;
+  padding-top: ${props => props.theme.spaces.xxl};
+  box-sizing: border-box;
   background: linear-gradient(
     0deg,
     rgba(5, 82, 181, 1) 0%,

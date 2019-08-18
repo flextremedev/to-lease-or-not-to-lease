@@ -55,7 +55,7 @@ export const handleBoxShadow = (
 };
 export const handleTextShadow = (props: ButtonStyledProps) => {
   if (props.variant === "text") {
-    return "0px 1px 2px rgba(0,0,0,0.22)";
+    return "0px 2px 3px rgba(0,0,0,0.52)";
   }
   return "none";
 };

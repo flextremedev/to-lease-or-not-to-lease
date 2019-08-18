@@ -9,6 +9,8 @@ type TextFieldProps = {
   readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   invertLabelColor?: boolean;
+  name?: string;
+  tabIndex?: number;
 };
 const InputStyled = styled.input`
   background-color: ${props => props.theme.colors.input.background.color};
@@ -30,36 +32,43 @@ const FormControl = styled.div<FormControlProps>`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  height: ${props => (props.label === undefined ? "auto" : "56px")};
+  height: ${props => (props.label === undefined ? "auto" : "60px")};
 `;
-export const TextField: React.FC<TextFieldProps> = ({
-  id,
-  label,
-  placeholder,
-  value,
-  onChange,
-  readOnly,
-  invertLabelColor,
-}) => {
-  if (label && id === undefined) {
-    console.warn(
-      "You should provide an id to provide better accessibility when using a label."
+export const TextField: React.FC<TextFieldProps> = React.memo(
+  ({
+    id,
+    label,
+    placeholder,
+    value,
+    onChange,
+    readOnly,
+    invertLabelColor,
+    name,
+    tabIndex,
+  }) => {
+    if (label && id === undefined) {
+      console.warn(
+        "You should provide an id to provide better accessibility when using a label."
+      );
+    }
+    return (
+      <FormControl label={label}>
+        {label && (
+          <Label htmlFor={id} invertColor={invertLabelColor}>
+            {label}
+          </Label>
+        )}
+        <InputStyled
+          id={id}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          readOnly={readOnly}
+          name={name}
+          tabIndex={tabIndex}
+        />
+      </FormControl>
     );
   }
-  return (
-    <FormControl label={label}>
-      {label && (
-        <Label htmlFor={id} invertColor={invertLabelColor}>
-          {label}
-        </Label>
-      )}
-      <InputStyled
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        readOnly={readOnly}
-      />
-    </FormControl>
-  );
-};
+);
+TextField.displayName = "TextField";
