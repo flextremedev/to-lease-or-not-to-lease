@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useReducer } from "react";
+import React, { useState, useCallback } from "react";
 import { Page } from "../components/Page/Page";
 import { Paragraph } from "../components/Paragraph/Paragraph";
 import { Heading } from "../components/Heading/Heading";
@@ -9,59 +9,13 @@ import { SplitscreenLeft } from "../components/Splitscreen/SplitscreenLeft";
 import { SplitscreenRight } from "../components/Splitscreen/SplitscreenRight";
 import { Card } from "../components/Card/Card";
 import { Button } from "../components/Button/Button";
-import { TextField } from "../components/TextField/TextField";
 import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
 import { ComparisonRow } from "../components/ComparisonRow/ComparisonRow";
-const formLabels = {
-  finCarPrice: "Neuwagenpreis",
-  finInitialPayment: "Anzahlung",
-  finRunTime: "Laufzeit (Monate)",
-  finMonthlyRate: "Monatliche Rate",
-  finEndingRate: "Schlussrate",
-  finAnnualPercentageRate: "Effektiver Jahreszins",
-  leasCarPrice: "Neuwagenpreis",
-  leasInitialPayment: "Anzahlung",
-  leasRunTime: "Laufzeit (Monate)",
-  leasMonthlyRate: "Monatliche Rate",
-};
-const initialFormState = {
-  finCarPrice: "",
-  finInitialPayment: "",
-  finRunTime: "",
-  finMonthlyRate: "",
-  finEndingRate: "",
-  finAnnualPercentageRate: "",
-  leasCarPrice: "",
-  leasInitialPayment: "",
-  leasRunTime: "",
-  leasMonthlyRate: "",
-};
-type FormState = typeof initialFormState;
-type FormAction = {
-  name: string;
-  value: string;
-};
-const fieldNames = Object.keys(initialFormState);
-const financingFieldNames = fieldNames.slice(0, 6) as (keyof Pick<
-  FormState,
-  | "finAnnualPercentageRate"
-  | "finCarPrice"
-  | "finEndingRate"
-  | "finInitialPayment"
-  | "finMonthlyRate"
-  | "finRunTime"
->)[];
-const leasingFieldNames = fieldNames.slice(6) as (keyof Pick<
-  FormState,
-  "leasCarPrice" | "leasInitialPayment" | "leasMonthlyRate" | "leasRunTime"
->)[];
+import { useForm } from "../hooks/useForm";
 
-const formReducer = (state: FormState, { name, value }: FormAction) => {
-  return { ...state, [name]: value };
-};
 export const Home: React.FC = () => {
   const [showResult, setShowResult] = useState(false);
-  const [formState, dispatch] = useReducer(formReducer, initialFormState);
+  const { financingFields, leasingFields } = useForm();
   const [results] = useState([
     ["Result", "Result", "Result"],
     ["Result", "Result", "Result"],
@@ -69,13 +23,6 @@ export const Home: React.FC = () => {
     ["Result", "Result", "Result"],
   ]);
   const handleCalculate = useCallback(() => setShowResult(true), []);
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.target;
-      return dispatch({ name, value });
-    },
-    [dispatch]
-  );
   const renderResults = () =>
     results.map((row: string[], index: number) => {
       return (
@@ -99,21 +46,6 @@ export const Home: React.FC = () => {
         </SlideAnimation>
       );
     });
-  const renderFields = (
-    fieldNames: (keyof FormState)[],
-    invertLabelColor?: boolean
-  ) =>
-    fieldNames.map(fieldName => (
-      <TextField
-        key={fieldName}
-        id={fieldName}
-        onChange={handleChange}
-        label={formLabels[fieldName]}
-        name={fieldName}
-        value={formState[fieldName]}
-        invertLabelColor={invertLabelColor}
-      />
-    ));
 
   return (
     <Page>
@@ -129,13 +61,13 @@ export const Home: React.FC = () => {
           <Splitscreen>
             <SplitscreenLeft>
               <Heading h={2}>Finanzierung</Heading>
-              {renderFields(financingFieldNames)}
+              {financingFields}
             </SplitscreenLeft>
             <SplitscreenRight>
               <Heading h={2} invertColor>
                 Leasing
               </Heading>
-              {renderFields(leasingFieldNames, true)}
+              {leasingFields}
             </SplitscreenRight>
           </Splitscreen>
         </CardBody>
