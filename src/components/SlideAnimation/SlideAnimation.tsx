@@ -2,13 +2,28 @@ import { styled, Theme } from "../../theme";
 import { ThemedStyledProps, keyframes } from "styled-components";
 
 type SlideAnimationProps = {
+  /**
+   * **CUSTOM PROP**: Condition to start animation.
+   */
   condition?: boolean;
+  /**
+   * **CUSTOM PROP**: Animate to original position. Usage without condition not recommended.
+   */
   useAsFrom?: boolean;
+  /**
+   * **CUSTOM PROP**: x-amount of animation.
+   */
   xAmount?: number;
+  /**
+   * **CUSTOM PROP**: y-amount of animation.
+   */
   yAmount?: number;
+  /**
+   * **CUSTOM PROP**: Full width.
+   */
   fullWidth?: boolean;
   /**
-   * Duration in ms.
+   * **CUSTOM PROP**: Duration in ms.
    */
   duration?: number;
 };

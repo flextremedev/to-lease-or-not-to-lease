@@ -30,7 +30,7 @@ export const theme = {
   fonts: {
     h1: { fontSize: "3rem", fontWeight: 600, fontFamily: "Poppins" },
     h2: { fontSize: "1.875rem", fontWeight: 400, fontFamily: "Poppins" },
-    h3: { fontSize: "0.875rem", fontWeight: 400, fontFamily: "Poppins" },
+    h3: { fontSize: "0.875rem", fontWeight: 500, fontFamily: "Poppins" },
     paragraph: { fontSize: "1rem", fontWeight: 400, fontFamily: "Open Sans" },
     label: { fontSize: "0.875rem", fontWeight: 500, fontFamily: "Poppins" },
     summary: { fontSize: "0.875rem", fontWeight: 400, fontFamily: "Poppins" },

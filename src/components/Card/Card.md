@@ -5,7 +5,7 @@ const { Button } = require("../Button/Button.tsx");
 const { CardFooter } = require("../Card/CardFooter.tsx");
 const { CardBody } = require("../Card/CardBody.tsx");
 <Card>
-  <CardBody>
+  <CardBody usePadding>
     <Heading h={2}>Heading</Heading>
     <Paragraph>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
