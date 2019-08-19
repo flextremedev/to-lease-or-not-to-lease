@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useReducer } from "react";
 import { Page } from "../components/Page/Page";
 import { Paragraph } from "../components/Paragraph/Paragraph";
 import { Heading } from "../components/Heading/Heading";
@@ -12,32 +12,56 @@ import { Button } from "../components/Button/Button";
 import { TextField } from "../components/TextField/TextField";
 import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
 import { ComparisonRow } from "../components/ComparisonRow/ComparisonRow";
-type FormData = {
-  finCarPrice: string;
-  finInitialPayment: string;
-  finRunTime: string;
-  finMonthlyRate: string;
-  finEndingRate: string;
-  finAnnualPercentageRate: string;
-  leasCarPrice: string;
-  leasInitialPayment: string;
-  leasRunTime: string;
-  leasMonthlyRate: string;
+const formLabels = {
+  finCarPrice: "Neuwagenpreis",
+  finInitialPayment: "Anzahlung",
+  finRunTime: "Laufzeit (Monate)",
+  finMonthlyRate: "Monatliche Rate",
+  finEndingRate: "Schlussrate",
+  finAnnualPercentageRate: "Effektiver Jahreszins",
+  leasCarPrice: "Neuwagenpreis",
+  leasInitialPayment: "Anzahlung",
+  leasRunTime: "Laufzeit (Monate)",
+  leasMonthlyRate: "Monatliche Rate",
+};
+const initialFormState = {
+  finCarPrice: "",
+  finInitialPayment: "",
+  finRunTime: "",
+  finMonthlyRate: "",
+  finEndingRate: "",
+  finAnnualPercentageRate: "",
+  leasCarPrice: "",
+  leasInitialPayment: "",
+  leasRunTime: "",
+  leasMonthlyRate: "",
+};
+type FormState = typeof initialFormState;
+type FormAction = {
+  name: string;
+  value: string;
+};
+const fieldNames = Object.keys(initialFormState);
+const financingFieldNames = fieldNames.slice(0, 6) as (keyof Pick<
+  FormState,
+  | "finAnnualPercentageRate"
+  | "finCarPrice"
+  | "finEndingRate"
+  | "finInitialPayment"
+  | "finMonthlyRate"
+  | "finRunTime"
+>)[];
+const leasingFieldNames = fieldNames.slice(6) as (keyof Pick<
+  FormState,
+  "leasCarPrice" | "leasInitialPayment" | "leasMonthlyRate" | "leasRunTime"
+>)[];
+
+const formReducer = (state: FormState, { name, value }: FormAction) => {
+  return { ...state, [name]: value };
 };
 export const Home: React.FC = () => {
   const [showResult, setShowResult] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    finAnnualPercentageRate: "",
-    finCarPrice: "",
-    finEndingRate: "",
-    finInitialPayment: "",
-    finMonthlyRate: "",
-    finRunTime: "",
-    leasCarPrice: "",
-    leasInitialPayment: "",
-    leasMonthlyRate: "",
-    leasRunTime: "",
-  });
+  const [formState, dispatch] = useReducer(formReducer, initialFormState);
   const [results] = useState([
     ["Result", "Result", "Result"],
     ["Result", "Result", "Result"],
@@ -47,37 +71,49 @@ export const Home: React.FC = () => {
   const handleCalculate = useCallback(() => setShowResult(true), []);
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name } = event.target;
-      setFormData({ ...formData, [name]: event.target.value });
+      const { name, value } = event.target;
+      return dispatch({ name, value });
     },
-    [formData]
+    [dispatch]
   );
-  const renderResults = useCallback(
-    () =>
-      results.map((row: string[], index: number) => {
-        return (
-          <SlideAnimation
-            condition={showResult}
-            yAmount={-index * 37}
-            useAsFrom
-            duration={350}
-            fullWidth
-            key={`${row[1]}${index}`}
-          >
-            <ComparisonRow>
-              {row.map((column: string, index: number) => {
-                return (
-                  <Heading h={3} key={index + " " + column}>
-                    {column}
-                  </Heading>
-                );
-              })}
-            </ComparisonRow>
-          </SlideAnimation>
-        );
-      }),
-    [showResult, results]
-  );
+  const renderResults = () =>
+    results.map((row: string[], index: number) => {
+      return (
+        <SlideAnimation
+          condition={showResult}
+          yAmount={-index * 37}
+          useAsFrom
+          duration={350}
+          fullWidth
+          key={`${row[1]}${index}`}
+        >
+          <ComparisonRow>
+            {row.map((column: string, index: number) => {
+              return (
+                <Heading h={3} key={index + " " + column}>
+                  {column}
+                </Heading>
+              );
+            })}
+          </ComparisonRow>
+        </SlideAnimation>
+      );
+    });
+  const renderFields = (
+    fieldNames: (keyof FormState)[],
+    invertLabelColor?: boolean
+  ) =>
+    fieldNames.map(fieldName => (
+      <TextField
+        key={fieldName}
+        id={fieldName}
+        onChange={handleChange}
+        label={formLabels[fieldName]}
+        name={fieldName}
+        value={formState[fieldName]}
+        invertLabelColor={invertLabelColor}
+      />
+    ));
 
   return (
     <Page>
@@ -93,75 +129,13 @@ export const Home: React.FC = () => {
           <Splitscreen>
             <SplitscreenLeft>
               <Heading h={2}>Finanzierung</Heading>
-              <TextField
-                onChange={handleChange}
-                label={"Neuwagenpreis"}
-                name={"finCarPrice"}
-                value={formData.finCarPrice}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Anzahlung"}
-                name={"finInitialPayment"}
-                value={formData.finInitialPayment}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Laufzeit (Monate)"}
-                name={"finRunTime"}
-                value={formData.finRunTime}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Monatliche Rate"}
-                name="finMonthlyRate"
-                value={formData.finMonthlyRate}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Schlussrate"}
-                name="finEndingRate"
-                value={formData.finEndingRate}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Effektiver Jahreszins"}
-                name="finAnnualPercentageRate"
-                value={formData.finAnnualPercentageRate}
-              />
+              {renderFields(financingFieldNames)}
             </SplitscreenLeft>
             <SplitscreenRight>
               <Heading h={2} invertColor>
                 Leasing
               </Heading>
-              <TextField
-                onChange={handleChange}
-                label={"Neuwagenpreis"}
-                invertLabelColor
-                name="leasCarPrice"
-                value={formData.leasCarPrice}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Anzahlung"}
-                invertLabelColor
-                name="leasInitialPayment"
-                value={formData.leasInitialPayment}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Laufzeit (Monate)"}
-                invertLabelColor
-                name="leasRunTime"
-                value={formData.leasRunTime}
-              />
-              <TextField
-                onChange={handleChange}
-                label={"Monatliche Rate"}
-                invertLabelColor
-                name="leasMonthlyRate"
-                value={formData.leasMonthlyRate}
-              />
+              {renderFields(leasingFieldNames, true)}
             </SplitscreenRight>
           </Splitscreen>
         </CardBody>
