@@ -13,6 +13,7 @@ module.exports = {
         "src/components/Card/CardBody.tsx",
         "src/components/Splitscreen/SplitscreenLeft.tsx",
         "src/components/Splitscreen/SplitscreenRight.tsx",
+        "src/components/Page/Page.tsx",
       ],
     },
   ],

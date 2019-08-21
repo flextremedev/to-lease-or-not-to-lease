@@ -19,10 +19,8 @@ const { CardBody } = require("../Card/CardBody.tsx");
       sit amet.
     </Paragraph>
   </CardBody>
-  <div style={{ marginTop: "16px" }}>
-    <CardFooter>
-      <Button>Button</Button>
-    </CardFooter>
-  </div>
+  <CardFooter>
+    <Button>Button</Button>
+  </CardFooter>
 </Card>;
 ```

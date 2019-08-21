@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
   return (
     <Page>
       <Heading h={1} invertColor>
-        Leasing vs Finanzierung
+        Finanzierung vs Leasing
       </Heading>
       <Paragraph invertColor style={{ textAlign: "center" }}>
         Du willst wissen, ob du dein nächster Auto finanzieren oder leasen
