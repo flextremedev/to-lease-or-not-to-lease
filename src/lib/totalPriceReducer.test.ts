@@ -14,7 +14,7 @@ describe("totalPriceReducer", () => {
       leasCarPrice: 30000,
     };
     const resultState: ResultState = { ...initialResults };
-    const expected = { financing: 34200, label: "Gesamtpreis", leasing: 29200 };
+    const expected = { financing: 34200, label: "Gesamtpreis", leasing: NaN };
     expect(totalPriceReducer(resultState["totalPrice"], formState)).toEqual(
       expected
     );
