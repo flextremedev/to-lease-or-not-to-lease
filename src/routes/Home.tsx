@@ -18,10 +18,17 @@ export const Home: React.FC = () => {
   const { results, calculateResult, showResults } = useResult(formState);
   return (
     <Page>
-      <Heading h={1} invertColor>
+      <Heading
+        h={1}
+        invertColor
+        style={{ textAlign: "center", padding: "0px 16px" }}
+      >
         Finanzierung vs Leasing
       </Heading>
-      <Paragraph invertColor style={{ textAlign: "center" }}>
+      <Paragraph
+        invertColor
+        style={{ textAlign: "center", padding: "0px 16px" }}
+      >
         Du willst wissen, ob du dein nächster Auto finanzieren oder leasen
         solltest? <br />
         Finde es heraus!

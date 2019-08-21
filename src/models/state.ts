@@ -12,7 +12,7 @@ export const initialResults = {
   },
   monthlyCosts: {
     financing: NaN,
-    label: "Monatliche Kosten (effektiv)",
+    label: "Monatliche Kosten",
     leasing: NaN,
   },
 };
