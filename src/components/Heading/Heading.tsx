@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled } from "../../theme";
 type HeadingProps = {
   h?: 1 | 2 | 3;
-  children?: string;
+  children?: string | number;
   invertColor?: boolean;
 };
 type HeadingType = "h1" | "h2" | "h3";

@@ -5,12 +5,13 @@ type TextFieldProps = {
   id?: string;
   label?: string;
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   invertLabelColor?: boolean;
   name?: string;
   tabIndex?: number;
+  type?: "text" | "number";
 };
 const InputStyled = styled.input`
   background-color: ${props => props.theme.colors.input.background.color};
@@ -44,6 +45,7 @@ export const TextField: React.FC<TextFieldProps> = React.memo(
     readOnly,
     invertLabelColor,
     name,
+    type,
     tabIndex,
   }) => {
     if (label && id === undefined) {
@@ -66,6 +68,7 @@ export const TextField: React.FC<TextFieldProps> = React.memo(
           readOnly={readOnly}
           name={name}
           tabIndex={tabIndex}
+          type={type}
         />
       </FormControl>
     );
