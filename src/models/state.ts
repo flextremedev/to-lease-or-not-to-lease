@@ -28,4 +28,15 @@ export const initialFormState = {
   leasRunTime: NaN,
   leasMonthlyRate: NaN,
 };
+// export const initialFormState = {
+//   finCarPrice: 56000,
+//   finInitialPayment: 754.5,
+//   finRunTime: 48,
+//   finMonthlyRate: 512.6,
+//   finEndingRate: 26320,
+//   leasCarPrice: 56000,
+//   leasInitialPayment: 754.5,
+//   leasRunTime: 48,
+//   leasMonthlyRate: 544.76,
+// };
 export type FormState = typeof initialFormState;

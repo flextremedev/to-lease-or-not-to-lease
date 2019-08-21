@@ -11,9 +11,6 @@ export const totalPriceReducer = (
       finInitialPayment,
       finMonthlyRate,
       finRunTime,
-      leasInitialPayment,
-      leasMonthlyRate,
-      leasRunTime,
     } = formState;
     const totalPriceFin = calculateTotalPrice(
       finMonthlyRate,
@@ -21,15 +18,9 @@ export const totalPriceReducer = (
       finInitialPayment,
       finEndingRate
     );
-    const totalPriceLeas = calculateTotalPrice(
-      leasMonthlyRate,
-      leasRunTime,
-      leasInitialPayment
-    );
     return {
       ...totalPriceState,
       financing: totalPriceFin,
-      leasing: totalPriceLeas,
     };
   }
   return totalPriceState;

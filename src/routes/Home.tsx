@@ -19,11 +19,12 @@ export const Home: React.FC = () => {
   return (
     <Page>
       <Heading h={1} invertColor>
-        To lease or not to lease
+        Leasing vs Finanzierung
       </Heading>
-      <Paragraph invertColor>
-        Finde heraus, ob es günstiger ist dein nächstes Auto zu leasen oder zu
-        kaufen.
+      <Paragraph invertColor style={{ textAlign: "center" }}>
+        Du willst wissen, ob du dein nächster Auto finanzieren oder leasen
+        solltest? <br />
+        Finde es heraus!
       </Paragraph>
       <Card>
         <CardBody>

@@ -49,10 +49,11 @@ export const useForm = () => {
     fieldNames: (keyof FormState)[],
     invertLabelColor?: boolean
   ) =>
-    fieldNames.map(fieldName => (
+    fieldNames.map((fieldName, index) => (
       <TextField
         key={fieldName}
         id={fieldName}
+        tabIndex={index + 1}
         onChange={handleFormChange}
         label={formLabels[fieldName]}
         name={fieldName}

@@ -5,12 +5,20 @@ import { Heading } from "../components/Heading/Heading";
 import { ResultState, FormState, initialResults } from "../models/state";
 import { totalPriceReducer } from "../lib/totalPriceReducer";
 import { calculateValueAfterMonths } from "../lib/calculateValueAfterMonths";
+import { theme } from "../theme";
+import { calculateTotalPrice } from "../lib/calculateTotalPrice";
 
 const resultReducer = (
   results: ResultState,
   formState: FormState
 ): ResultState => {
-  const { finCarPrice, finRunTime, leasRunTime } = formState;
+  const {
+    finCarPrice,
+    finRunTime,
+    leasRunTime,
+    leasMonthlyRate,
+    leasInitialPayment,
+  } = formState;
   const totalPriceState = totalPriceReducer(results["totalPrice"], formState);
   const residualValueState = {
     ...results["residualValue"],
@@ -19,7 +27,11 @@ const resultReducer = (
   const costsForRuntimeState = {
     ...results["costsForRuntime"],
     financing: totalPriceState.financing - residualValueState.financing,
-    leasing: totalPriceState.leasing,
+    leasing: calculateTotalPrice(
+      leasMonthlyRate,
+      leasRunTime,
+      leasInitialPayment
+    ),
   };
   const monthlyCostsState = {
     ...results["monthlyCosts"],
@@ -33,6 +45,22 @@ const resultReducer = (
     costsForRuntime: costsForRuntimeState,
     monthlyCosts: monthlyCostsState,
   };
+};
+const getColor = (expression1: number, expression2: number) => {
+  if (
+    expression1 != null &&
+    !isNaN(expression1) &&
+    expression2 != null &&
+    !isNaN(expression2)
+  ) {
+    if (expression1 < expression2) {
+      return theme.colors.success;
+    } else if (expression1 === expression2) {
+      return theme.colors.foregroundAlt;
+    }
+    return theme.colors.error;
+  }
+  return theme.colors.foregroundAlt;
 };
 export const useResult = (formState: FormState) => {
   const [showResults, setShowResults] = useState(false);
@@ -54,7 +82,7 @@ export const useResult = (formState: FormState) => {
           key={`slide-animation-${resultKey}`}
         >
           <ComparisonRow>
-            {Object.keys(result).map(entryKey => {
+            {/* {Object.keys(result).map(entryKey => {
               const key = entryKey as keyof (typeof result);
               const resultAtKey = result[key];
               let text =
@@ -64,12 +92,28 @@ export const useResult = (formState: FormState) => {
               if (text.includes("NaN")) {
                 text = "-";
               }
-              return (
-                <Heading h={3} key={`heading-${resultKey}-${entryKey}`}>
-                  {text}
-                </Heading>
-              );
-            })}
+              return ( */}
+            <Heading
+              h={3}
+              style={{
+                color: getColor(result["financing"], result["leasing"]),
+              }}
+            >
+              {isNaN(result["financing"])
+                ? "-"
+                : result["financing"].toFixed(2)}
+            </Heading>
+            <Heading h={3}>{result["label"]}</Heading>
+            <Heading
+              h={3}
+              style={{
+                color: getColor(result["leasing"], result["financing"]),
+              }}
+            >
+              {isNaN(result["leasing"]) ? "-" : result["leasing"].toFixed(2)}
+            </Heading>
+            {/* );
+            })} */}
           </ComparisonRow>
         </SlideAnimation>
       );

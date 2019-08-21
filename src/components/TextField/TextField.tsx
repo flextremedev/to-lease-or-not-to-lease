@@ -35,6 +35,12 @@ const FormControl = styled.div<FormControlProps>`
   justify-content: space-between;
   height: ${props => (props.label === undefined ? "auto" : "60px")};
 `;
+const getValue = (value: string | number | undefined) => {
+  if (typeof value === "number" && isNaN(value)) {
+    return "";
+  }
+  return value;
+};
 export const TextField: React.FC<TextFieldProps> = React.memo(
   ({
     id,
@@ -63,7 +69,7 @@ export const TextField: React.FC<TextFieldProps> = React.memo(
         <InputStyled
           id={id}
           placeholder={placeholder}
-          value={value}
+          value={getValue(value)}
           onChange={onChange}
           readOnly={readOnly}
           name={name}
