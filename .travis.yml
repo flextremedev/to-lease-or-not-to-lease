@@ -11,3 +11,11 @@ script:
   - yarn run build
 after_success:
   - codecov --file coverage/lcov.info --disable search
+before_deploy:
+  - yarn global add netlify-cli
+deploy:
+  provider: script
+  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN -p --dir ./build
+  skip_cleanup: true
+  on: 
+    branch: master
