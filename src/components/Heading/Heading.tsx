@@ -5,6 +5,7 @@ type HeadingProps = {
   children?: string | number;
   invertColor?: boolean;
   style?: React.CSSProperties;
+  dataTestId?: string;
 };
 type HeadingType = "h1" | "h2" | "h3";
 const makeHeadingStyled = (h: number) => {
@@ -23,10 +24,10 @@ const makeHeadingStyled = (h: number) => {
 };
 
 export const Heading: React.FC<HeadingProps> = React.memo(
-  ({ h = 1, children, invertColor, style }) => {
+  ({ h = 1, children, invertColor, style, dataTestId }) => {
     const Heading = makeHeadingStyled(h);
     return (
-      <Heading invertColor={invertColor} style={style}>
+      <Heading invertColor={invertColor} style={style} data-testid={dataTestId}>
         {children}
       </Heading>
     );

@@ -5,13 +5,13 @@ import { initialFormState, FormState } from "../models/state";
 const formLabels = {
   finCarPrice: "Neuwagenpreis",
   finInitialPayment: "Anzahlung",
-  finRunTime: "Laufzeit (Monate)",
+  finRuntime: "Laufzeit (Monate)",
   finMonthlyRate: "Monatliche Rate",
   finEndingRate: "Schlussrate",
   finAnnualPercentageRate: "Effektiver Jahreszins",
   leasCarPrice: "Neuwagenpreis",
   leasInitialPayment: "Anzahlung",
-  leasRunTime: "Laufzeit (Monate)",
+  leasRuntime: "Laufzeit (Monate)",
   leasMonthlyRate: "Monatliche Rate",
 };
 
@@ -26,11 +26,11 @@ const financingFieldNames = fieldNames.slice(0, 5) as (keyof Pick<
   | "finEndingRate"
   | "finInitialPayment"
   | "finMonthlyRate"
-  | "finRunTime"
+  | "finRuntime"
 >)[];
 const leasingFieldNames = fieldNames.slice(5) as (keyof Pick<
   FormState,
-  "leasCarPrice" | "leasInitialPayment" | "leasMonthlyRate" | "leasRunTime"
+  "leasCarPrice" | "leasInitialPayment" | "leasMonthlyRate" | "leasRuntime"
 >)[];
 
 const formReducer = (state: FormState, { name, value }: FormAction) => {
@@ -59,6 +59,7 @@ export const useForm = () => {
         name={fieldName}
         value={formState[fieldName]}
         type="number"
+        dataTestId={fieldName}
         invertLabelColor={invertLabelColor}
       />
     ));

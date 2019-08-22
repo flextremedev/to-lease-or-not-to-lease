@@ -14,29 +14,29 @@ const resultReducer = (
 ): ResultState => {
   const {
     finCarPrice,
-    finRunTime,
-    leasRunTime,
+    finRuntime,
+    leasRuntime,
     leasMonthlyRate,
     leasInitialPayment,
   } = formState;
   const totalPriceState = totalPriceReducer(results["totalPrice"], formState);
   const residualValueState = {
     ...results["residualValue"],
-    financing: calculateValueAfterMonths(finCarPrice, finRunTime),
+    financing: calculateValueAfterMonths(finCarPrice, finRuntime),
   };
   const costsForRuntimeState = {
     ...results["costsForRuntime"],
     financing: totalPriceState.financing - residualValueState.financing,
     leasing: calculateTotalPrice(
       leasMonthlyRate,
-      leasRunTime,
+      leasRuntime,
       leasInitialPayment
     ),
   };
   const monthlyCostsState = {
     ...results["monthlyCosts"],
-    financing: costsForRuntimeState.financing / finRunTime,
-    leasing: costsForRuntimeState.leasing / leasRunTime,
+    financing: costsForRuntimeState.financing / finRuntime,
+    leasing: costsForRuntimeState.leasing / leasRuntime,
   };
   return {
     ...results,
@@ -98,17 +98,21 @@ export const useResult = (formState: FormState) => {
               style={{
                 color: getColor(result["financing"], result["leasing"]),
               }}
+              dataTestId={`${resultKey}-financing`}
             >
               {isNaN(result["financing"])
                 ? "-"
                 : result["financing"].toFixed(2)}
             </Heading>
-            <Heading h={3}>{result["label"]}</Heading>
+            <Heading h={3} dataTestId={`${resultKey}-label`}>
+              {result["label"]}
+            </Heading>
             <Heading
               h={3}
               style={{
                 color: getColor(result["leasing"], result["financing"]),
               }}
+              dataTestId={`${resultKey}-leasing`}
             >
               {isNaN(result["leasing"]) ? "-" : result["leasing"].toFixed(2)}
             </Heading>

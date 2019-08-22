@@ -10,11 +10,11 @@ export const totalPriceReducer = (
       finEndingRate,
       finInitialPayment,
       finMonthlyRate,
-      finRunTime,
+      finRuntime,
     } = formState;
     const totalPriceFin = calculateTotalPrice(
       finMonthlyRate,
-      finRunTime,
+      finRuntime,
       finInitialPayment,
       finEndingRate
     );

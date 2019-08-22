@@ -11,7 +11,7 @@ import { Card } from "../components/Card/Card";
 import { Button } from "../components/Button/Button";
 import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
 import { useForm } from "../hooks/useForm";
-import { useResult } from "../hooks/useResults";
+import { useResult } from "../hooks/useResult";
 
 export const Home: React.FC = () => {
   const { formState, financingFields, leasingFields } = useForm();

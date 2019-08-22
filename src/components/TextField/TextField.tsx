@@ -12,6 +12,7 @@ type TextFieldProps = {
   name?: string;
   tabIndex?: number;
   type?: "text" | "number";
+  dataTestId?: string;
 };
 const InputStyled = styled.input`
   background-color: ${props => props.theme.colors.input.background.color};
@@ -53,6 +54,7 @@ export const TextField: React.FC<TextFieldProps> = React.memo(
     name,
     type,
     tabIndex,
+    dataTestId,
   }) => {
     if (label && id === undefined) {
       console.warn(
@@ -75,6 +77,7 @@ export const TextField: React.FC<TextFieldProps> = React.memo(
           name={name}
           tabIndex={tabIndex}
           type={type}
+          data-testid={dataTestId}
         />
       </FormControl>
     );

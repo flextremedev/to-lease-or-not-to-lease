@@ -1,8 +1,8 @@
 export const calculateTotalPrice = (
   monthlyRate: number,
-  runTime: number,
+  runtime: number,
   initialPayment = 0,
   endingRate = 0
 ) => {
-  return runTime * monthlyRate + initialPayment + endingRate;
+  return runtime * monthlyRate + initialPayment + endingRate;
 };
