@@ -16,7 +16,7 @@ export const theme = {
     foregroundAlt: "#1F2933",
     onForeground: "#1F2933",
     onForegroundAlt: "#FFFFFF",
-    neutral: "#F5F7FA",
+    neutral: "#E4E7EB",
     error: "#D63230",
     success: "#94C426",
   },
