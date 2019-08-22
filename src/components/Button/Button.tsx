@@ -27,7 +27,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   font-family: ${props => props.theme.fonts.button.fontFamily}, sans-serif;
   font-weight: ${props => props.theme.fonts.button.fontWeight};
   font-size: ${props => props.theme.fonts.button.fontSize};
-  height: 44px;
+  height: 48px;
   padding: 0px 20px;
   outline: none;
   width: ${props => (props.fullWidth ? "100%" : "auto")};
