@@ -29,7 +29,7 @@ export const Home: React.FC = () => {
         invertColor
         style={{ textAlign: "center", padding: "0px 16px" }}
       >
-        Du willst wissen, ob du dein nächster Auto finanzieren oder leasen
+        Du willst wissen, ob du dein nächstes Auto finanzieren oder leasen
         solltest? <br />
         Finde es heraus!
       </Paragraph>
