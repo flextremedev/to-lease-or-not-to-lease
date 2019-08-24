@@ -35,8 +35,8 @@ const resultReducer = (
   };
   const monthlyCostsState = {
     ...results["monthlyCosts"],
-    financing: costsForRuntimeState.financing / finRuntime,
-    leasing: costsForRuntimeState.leasing / leasRuntime,
+    financing: costsForRuntimeState.financing / (finRuntime || 0),
+    leasing: costsForRuntimeState.leasing / (leasRuntime || 0),
   };
   return {
     ...results,
@@ -82,17 +82,6 @@ export const useResult = (formState: FormState) => {
           key={`slide-animation-${resultKey}`}
         >
           <ComparisonRow>
-            {/* {Object.keys(result).map(entryKey => {
-              const key = entryKey as keyof (typeof result);
-              const resultAtKey = result[key];
-              let text =
-                typeof resultAtKey === "string"
-                  ? resultAtKey
-                  : `${resultAtKey.toFixed(2)}`;
-              if (text.includes("NaN")) {
-                text = "-";
-              }
-              return ( */}
             <Heading
               h={3}
               style={{

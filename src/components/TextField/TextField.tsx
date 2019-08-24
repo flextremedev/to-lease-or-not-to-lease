@@ -37,7 +37,7 @@ const FormControl = styled.div<FormControlProps>`
   height: ${props => (props.label === undefined ? "auto" : "60px")};
 `;
 const getValue = (value: string | number | undefined) => {
-  if (typeof value === "number" && isNaN(value)) {
+  if ((typeof value === "number" && isNaN(value)) || value === undefined) {
     return "";
   }
   return value;

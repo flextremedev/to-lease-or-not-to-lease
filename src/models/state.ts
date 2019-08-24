@@ -18,15 +18,15 @@ export const initialResults = {
 };
 export type ResultState = typeof initialResults;
 export const initialFormState = {
-  finCarPrice: NaN,
-  finInitialPayment: NaN,
-  finRuntime: NaN,
-  finMonthlyRate: NaN,
-  finEndingRate: NaN,
-  leasCarPrice: NaN,
-  leasInitialPayment: NaN,
-  leasRuntime: NaN,
-  leasMonthlyRate: NaN,
+  finCarPrice: undefined,
+  finInitialPayment: undefined,
+  finRuntime: undefined,
+  finMonthlyRate: undefined,
+  finEndingRate: undefined,
+  leasCarPrice: undefined,
+  leasInitialPayment: undefined,
+  leasRuntime: undefined,
+  leasMonthlyRate: undefined,
 };
 // export const initialFormState = {
 //   finCarPrice: 56000,
@@ -39,4 +39,14 @@ export const initialFormState = {
 //   leasRuntime: 48,
 //   leasMonthlyRate: 544.76,
 // };
-export type FormState = typeof initialFormState;
+export type FormState = {
+  finCarPrice?: number;
+  finInitialPayment?: number;
+  finRuntime?: number;
+  finMonthlyRate?: number;
+  finEndingRate?: number;
+  leasCarPrice?: number;
+  leasInitialPayment?: number;
+  leasRuntime?: number;
+  leasMonthlyRate?: number;
+};
