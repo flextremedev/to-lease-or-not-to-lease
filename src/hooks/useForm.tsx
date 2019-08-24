@@ -17,7 +17,7 @@ const formLabels = {
 
 type FormAction = {
   name: string;
-  value: number;
+  value: number | undefined;
 };
 const fieldNames = Object.keys(initialFormState);
 const financingFieldNames = fieldNames.slice(0, 5) as (keyof Pick<
@@ -41,7 +41,10 @@ export const useForm = () => {
   const handleFormChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
-      return dispatch({ name, value: Number(value) });
+      return dispatch({
+        name,
+        value: value === "" ? undefined : Number(value),
+      });
     },
     [dispatch]
   );

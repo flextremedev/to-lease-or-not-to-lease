@@ -1,9 +1,12 @@
 import * as React from "react";
 import { renderWithTheme } from "../testing-utils/renderWithTheme";
 import { Home } from "./Home";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, cleanup } from "@testing-library/react";
 
 describe("Home", () => {
+  afterEach(() => {
+    cleanup();
+  });
   it("should display correct result for given form values", () => {
     const { getByTestId, getByText } = renderWithTheme(<Home />);
     const finCarPrice = getByTestId("finCarPrice");
@@ -50,5 +53,40 @@ describe("Home", () => {
     );
     expect(getByTestId("monthlyCosts-leasing").textContent).toBe("560.48");
     expect(getByText("Erneut berechnen")).toBeTruthy();
+  });
+  it("should display correct result for empty form values", () => {
+    const { getByTestId, getByText } = renderWithTheme(<Home />);
+    const button = getByText("Berechnen");
+    fireEvent.click(button);
+    expect(getByTestId("totalPrice-financing").textContent).toBe("-");
+    expect(getByTestId("totalPrice-label").textContent).toBe("Gesamtpreis");
+    expect(getByTestId("totalPrice-leasing").textContent).toBe("-");
+
+    expect(getByTestId("residualValue-financing").textContent).toBe("-");
+    expect(getByTestId("residualValue-label").textContent).toBe(
+      "Restwert nach Laufzeit"
+    );
+    expect(getByTestId("residualValue-leasing").textContent).toBe("-");
+
+    expect(getByTestId("costsForRuntime-financing").textContent).toBe("-");
+    expect(getByTestId("costsForRuntime-label").textContent).toBe(
+      "Kosten für Laufzeit"
+    );
+    expect(getByTestId("costsForRuntime-leasing").textContent).toBe("-");
+
+    expect(getByTestId("monthlyCosts-financing").textContent).toBe("-");
+    expect(getByTestId("monthlyCosts-label").textContent).toBe(
+      "Monatliche Kosten"
+    );
+    expect(getByTestId("monthlyCosts-leasing").textContent).toBe("-");
+    expect(getByText("Erneut berechnen")).toBeTruthy();
+  });
+  it("should display empty string in TextField when number deleted", () => {
+    const { getByTestId } = renderWithTheme(<Home />);
+    const finCarPrice = getByTestId("finCarPrice") as HTMLInputElement;
+    fireEvent.change(finCarPrice, { target: { value: "5" } });
+    expect(finCarPrice.value).toBe("5");
+    fireEvent.change(finCarPrice, { target: { value: "" } });
+    expect(finCarPrice.value).toBe("");
   });
 });
