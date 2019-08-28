@@ -1,18 +1,18 @@
 export const initialResults = {
-  totalPrice: { financing: NaN, label: "Gesamtpreis", leasing: NaN },
+  totalPrice: { financing: NaN, label: "Total Payment", leasing: NaN },
   residualValue: {
     financing: NaN,
-    label: "Restwert nach Laufzeit",
+    label: "Residual Value After Term",
     leasing: NaN,
   },
   costsForRuntime: {
     financing: NaN,
-    label: "Kosten für Laufzeit",
+    label: "Costs For Term",
     leasing: NaN,
   },
   monthlyCosts: {
     financing: NaN,
-    label: "Monatliche Kosten",
+    label: "Monthly Costs",
     leasing: NaN,
   },
 };

@@ -18,7 +18,7 @@ describe("Home", () => {
     const leasInitialPayment = getByTestId("leasInitialPayment");
     const leasRuntime = getByTestId("leasRuntime");
     const leasMonthlyRate = getByTestId("leasMonthlyRate");
-    const button = getByText("Berechnen");
+    const button = getByText("Calculate");
     fireEvent.change(finCarPrice, { target: { value: "56000" } });
     fireEvent.change(finInitialPayment, { target: { value: "754.5" } });
     fireEvent.change(finRuntime, { target: { value: "48" } });
@@ -30,56 +30,36 @@ describe("Home", () => {
     fireEvent.change(leasMonthlyRate, { target: { value: "544.76" } });
     fireEvent.click(button);
     expect(getByTestId("totalPrice-financing").textContent).toBe("51679.30");
-    expect(getByTestId("totalPrice-label").textContent).toBe("Gesamtpreis");
     expect(getByTestId("totalPrice-leasing").textContent).toBe("-");
 
     expect(getByTestId("residualValue-financing").textContent).toBe("36009.75");
-    expect(getByTestId("residualValue-label").textContent).toBe(
-      "Restwert nach Laufzeit"
-    );
     expect(getByTestId("residualValue-leasing").textContent).toBe("-");
 
     expect(getByTestId("costsForRuntime-financing").textContent).toBe(
       "15669.55"
     );
-    expect(getByTestId("costsForRuntime-label").textContent).toBe(
-      "Kosten für Laufzeit"
-    );
     expect(getByTestId("costsForRuntime-leasing").textContent).toBe("26902.98");
 
     expect(getByTestId("monthlyCosts-financing").textContent).toBe("326.45");
-    expect(getByTestId("monthlyCosts-label").textContent).toBe(
-      "Monatliche Kosten"
-    );
     expect(getByTestId("monthlyCosts-leasing").textContent).toBe("560.48");
-    expect(getByText("Erneut berechnen")).toBeTruthy();
+    expect(getByText("Recalculate")).toBeTruthy();
   });
   it("should display correct result for empty form values", () => {
     const { getByTestId, getByText } = renderWithTheme(<Home />);
-    const button = getByText("Berechnen");
+    const button = getByText("Calculate");
     fireEvent.click(button);
     expect(getByTestId("totalPrice-financing").textContent).toBe("-");
-    expect(getByTestId("totalPrice-label").textContent).toBe("Gesamtpreis");
     expect(getByTestId("totalPrice-leasing").textContent).toBe("-");
 
     expect(getByTestId("residualValue-financing").textContent).toBe("-");
-    expect(getByTestId("residualValue-label").textContent).toBe(
-      "Restwert nach Laufzeit"
-    );
     expect(getByTestId("residualValue-leasing").textContent).toBe("-");
 
     expect(getByTestId("costsForRuntime-financing").textContent).toBe("-");
-    expect(getByTestId("costsForRuntime-label").textContent).toBe(
-      "Kosten für Laufzeit"
-    );
     expect(getByTestId("costsForRuntime-leasing").textContent).toBe("-");
 
     expect(getByTestId("monthlyCosts-financing").textContent).toBe("-");
-    expect(getByTestId("monthlyCosts-label").textContent).toBe(
-      "Monatliche Kosten"
-    );
     expect(getByTestId("monthlyCosts-leasing").textContent).toBe("-");
-    expect(getByText("Erneut berechnen")).toBeTruthy();
+    expect(getByText("Recalculate")).toBeTruthy();
   });
   it("should display empty string in TextField when number deleted", () => {
     const { getByTestId } = renderWithTheme(<Home />);

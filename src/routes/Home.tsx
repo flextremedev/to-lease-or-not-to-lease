@@ -23,21 +23,20 @@ export const Home: React.FC = () => {
         invertColor
         style={{ textAlign: "center", padding: "0px 16px" }}
       >
-        Finanzierung vs Leasing
+        Finance or Leasing
       </Heading>
       <Paragraph
         invertColor
         style={{ textAlign: "center", padding: "0px 16px" }}
       >
-        Du willst wissen, ob du dein nächstes Auto finanzieren oder leasen
-        solltest? <br />
-        Finde es heraus!
+        Which is the cheapest option for you? <br />
+        Find out now!
       </Paragraph>
       <Card>
         <CardBody>
           <Splitscreen>
             <SplitscreenLeft>
-              <Heading h={2}>Finanzierung</Heading>
+              <Heading h={2}>Finance</Heading>
               {financingFields}
             </SplitscreenLeft>
             <SplitscreenRight>
@@ -61,7 +60,7 @@ export const Home: React.FC = () => {
               variant={showResults ? "text" : "contained"}
               invertColor={showResults}
             >
-              {showResults ? "Erneut berechnen" : "Berechnen"}
+              {showResults ? "Recalculate" : "Calculate"}
             </Button>
           </SlideAnimation>
           {showResults ? <React.Fragment>{results}</React.Fragment> : null}
