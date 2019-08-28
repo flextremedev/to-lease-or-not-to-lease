@@ -3,16 +3,15 @@ import { TextField } from "../components/TextField/TextField";
 import { initialFormState, FormState } from "../models/state";
 
 const formLabels = {
-  finCarPrice: "Neuwagenpreis",
-  finInitialPayment: "Anzahlung",
-  finRuntime: "Laufzeit (Monate)",
-  finMonthlyRate: "Monatliche Rate",
-  finEndingRate: "Schlussrate",
-  finAnnualPercentageRate: "Effektiver Jahreszins",
-  leasCarPrice: "Neuwagenpreis",
-  leasInitialPayment: "Anzahlung",
-  leasRuntime: "Laufzeit (Monate)",
-  leasMonthlyRate: "Monatliche Rate",
+  finCarPrice: "Vehicle Price",
+  finInitialPayment: "Initial Payment",
+  finRuntime: "Contract Length (months)",
+  finMonthlyRate: "Monthly Payment",
+  finEndingRate: "Ending Rate",
+  leasCarPrice: "Vehicle Price",
+  leasInitialPayment: "Initial Payment",
+  leasRuntime: "Contract Length (months)",
+  leasMonthlyRate: "Monthly Payment",
 };
 
 type FormAction = {
