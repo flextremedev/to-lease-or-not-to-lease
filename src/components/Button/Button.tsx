@@ -47,9 +47,6 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
     text-shadow: ${props => handleTextShadow(props)};
     text-decoration: ${props =>
       props.variant === "text" ? "underline" : "none"};
-    /* background-color: ${({ theme }) =>
-      theme.colors.button.background.hover}; */
-    border-color: ${({ theme }) => theme.colors.button.background.hover};
   }
   :focus {
     box-shadow: ${props => handleBoxShadow(props, true)};
