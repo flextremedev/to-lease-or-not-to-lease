@@ -20,7 +20,7 @@ const InputStyled = styled.input`
   height: 38px;
   font-size: ${props => props.theme.fonts.input.fontSize};
   font-family: ${props => props.theme.fonts.input.fontFamily}, sans-serif;
-  padding: 0px 8px;
+  padding: 0px ${props => props.theme.spaces.m};
   box-sizing: border-box;
   border: 1px solid ${props => props.theme.colors.input.border.color};
   :focus {

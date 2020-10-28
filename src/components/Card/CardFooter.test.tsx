@@ -11,12 +11,12 @@ describe("CardFooter", () => {
     const { getByText } = renderWithTheme(<CardFooter>Foo</CardFooter>);
     expect(getByText("Foo")).toBeTruthy();
   });
-  it("should set height to 164px if prop: expanded is passed", () => {
+  it("should set height to 196px if prop: expanded is passed", () => {
     const { getByText, rerender } = renderWithTheme(
       <CardFooter>Foo</CardFooter>
     );
-    expect(getByText("Foo")).toHaveStyleRule("height", "80px");
+    expect(getByText("Foo")).toHaveStyleRule("height", "112px");
     rerenderWithTheme(rerender, <CardFooter expanded>Foo</CardFooter>);
-    expect(getByText("Foo")).toHaveStyleRule("height", "164px");
+    expect(getByText("Foo")).toHaveStyleRule("height", "196px");
   });
 });

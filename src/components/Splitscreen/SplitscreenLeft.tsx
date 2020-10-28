@@ -7,7 +7,7 @@ export const SplitscreenLeft = styled.div`
   flex-flow: column nowrap;
   flex: 1;
   background: ${props => props.theme.colors.foreground};
-  > :not(:last-child) {
-    margin-bottom: ${props => props.theme.spaces.l};
+  > * {
+    margin-bottom: ${props => props.theme.spaces.xl};
   }
 `;

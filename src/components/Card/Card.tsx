@@ -3,7 +3,7 @@ import { styled } from "../../theme";
 
 const CardStyled = styled.div`
   background: ${props => props.theme.colors.foreground};
-  width: 608px;
+  width: 1024px;
   display: flex;
   flex-flow: column nowrap;
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.26),

@@ -47,4 +47,20 @@ describe("Heading", () => {
       theme.colors.onForegroundAlt
     );
   });
+  it("should render margin bottom if useMarginBottom is true", () => {
+    const { getByText, rerender } = renderWithTheme(
+      <Heading h={1}>Foo</Heading>
+    );
+    expect(getByText("Foo")).toHaveStyleRule(
+      "color",
+      theme.colors.onForeground
+    );
+    rerenderWithTheme(
+      rerender,
+      <Heading h={1} useMarginBottom>
+        Foo
+      </Heading>
+    );
+    expect(getByText("Foo")).toHaveStyleRule("margin-bottom", theme.spaces.xl);
+  });
 });
