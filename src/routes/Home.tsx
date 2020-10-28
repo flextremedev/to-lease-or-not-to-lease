@@ -36,11 +36,13 @@ export const Home: React.FC = () => {
         <CardBody>
           <Splitscreen>
             <SplitscreenLeft>
-              <Heading h={2}>Finance</Heading>
+              <Heading h={2} useMarginBottom>
+                Finance
+              </Heading>
               {financingFields}
             </SplitscreenLeft>
             <SplitscreenRight>
-              <Heading h={2} invertColor>
+              <Heading h={2} useMarginBottom invertColor>
                 Leasing
               </Heading>
               {leasingFields}
@@ -51,7 +53,7 @@ export const Home: React.FC = () => {
           <SlideAnimation
             fullWidth={!showResults}
             condition={showResults}
-            yAmount={156}
+            yAmount={172}
             duration={350}
           >
             <Button
