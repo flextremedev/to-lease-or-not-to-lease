@@ -6,11 +6,15 @@ export const Paragraph = styled.p<ParagraphProps>`
   font-size: ${props => props.theme.fonts.paragraph.fontSize};
   font-family: ${props => props.theme.fonts.paragraph.fontFamily};
   font-weight: ${props => props.theme.fonts.paragraph.fontWeight};
+  line-height: 1.625rem;
   color: ${props =>
     !props.invertColor
       ? props.theme.colors.onForeground
       : props.theme.colors.onForegroundAlt};
-  margin: 0;
-  margin-bottom: ${props => props.theme.spaces.xl};
+  margin: ${props => props.theme.spaces.l} 0px ${props => props.theme.spaces.xl}
+    0px;
   padding: 0;
+  @media (max-width: ${props => props.theme.breakpoints.m}px) {
+    margin-left: ${props => props.theme.spaces.xl};
+  }
 `;

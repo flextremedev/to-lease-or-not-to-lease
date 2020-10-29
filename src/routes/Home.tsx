@@ -12,62 +12,67 @@ import { Button } from "../components/Button/Button";
 import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
 import { useForm } from "../hooks/useForm";
 import { useResult } from "../hooks/useResult";
-
+import { styled } from "../theme";
+const Content = styled.div`
+  width: 80%;
+  max-width: 1024px;
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100%;
+  @media (max-width: ${props => props.theme.breakpoints.m}px) {
+    width: 100%;
+  }
+`;
 export const Home: React.FC = () => {
   const { formState, financingFields, leasingFields } = useForm();
   const { results, calculateResult, showResults } = useResult(formState);
   return (
     <Page>
-      <Heading
-        h={1}
-        invertColor
-        style={{ textAlign: "center", padding: "0px 16px" }}
-      >
-        Finance or Leasing
-      </Heading>
-      <Paragraph
-        invertColor
-        style={{ textAlign: "center", padding: "0px 16px" }}
-      >
-        Which is the cheapest option for you? <br />
-        Find out now!
-      </Paragraph>
-      <Card>
-        <CardBody>
-          <Splitscreen>
-            <SplitscreenLeft>
-              <Heading h={2} useMarginBottom>
-                Finance
-              </Heading>
-              {financingFields}
-            </SplitscreenLeft>
-            <SplitscreenRight>
-              <Heading h={2} useMarginBottom invertColor>
-                Leasing
-              </Heading>
-              {leasingFields}
-            </SplitscreenRight>
-          </Splitscreen>
-        </CardBody>
-        <CardFooter expanded={showResults}>
-          <SlideAnimation
-            fullWidth={!showResults}
-            condition={showResults}
-            yAmount={172}
-            duration={350}
-          >
-            <Button
+      <Content>
+        <Heading h={1} invertColor style={{ textAlign: "center" }}>
+          Finance or Leasing
+        </Heading>
+        <Paragraph invertColor style={{ textAlign: "center" }}>
+          Which is the cheapest option for you? <br />
+          Find out now!
+        </Paragraph>
+        <Card>
+          <CardBody>
+            <Splitscreen>
+              <SplitscreenLeft>
+                <Heading h={2} useMarginBottom>
+                  Finance
+                </Heading>
+                {financingFields}
+              </SplitscreenLeft>
+              <SplitscreenRight>
+                <Heading h={2} useMarginBottom invertColor>
+                  Leasing
+                </Heading>
+                {leasingFields}
+              </SplitscreenRight>
+            </Splitscreen>
+          </CardBody>
+          <CardFooter expanded={showResults}>
+            <SlideAnimation
               fullWidth={!showResults}
-              onClick={calculateResult}
-              variant={showResults ? "text" : "contained"}
-              invertColor={showResults}
+              condition={showResults}
+              yAmount={172}
+              duration={350}
             >
-              {showResults ? "Recalculate" : "Calculate"}
-            </Button>
-          </SlideAnimation>
-          {showResults ? <React.Fragment>{results}</React.Fragment> : null}
-        </CardFooter>
-      </Card>
+              <Button
+                fullWidth={!showResults}
+                onClick={calculateResult}
+                variant={showResults ? "text" : "contained"}
+                invertColor={showResults}
+              >
+                {showResults ? "Recalculate" : "Calculate"}
+              </Button>
+            </SlideAnimation>
+            {showResults ? <React.Fragment>{results}</React.Fragment> : null}
+          </CardFooter>
+        </Card>
+      </Content>
     </Page>
   );
 };

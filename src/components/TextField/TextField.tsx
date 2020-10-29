@@ -23,8 +23,10 @@ const InputStyled = styled.input`
   padding: 0px ${props => props.theme.spaces.m};
   box-sizing: border-box;
   border: 1px solid ${props => props.theme.colors.input.border.color};
+  outline: none;
   :focus {
     border-color: ${props => props.theme.colors.input.border.focus};
+    border-width: 2px;
   }
 `;
 type FormControlProps = {
