@@ -9,7 +9,7 @@ export const Page = styled.div`
   padding-top: ${props => props.theme.spaces.xxl};
   box-sizing: border-box;
   background: linear-gradient(
-    0deg,
+    180deg,
     ${({ theme }) => theme.colors.background} 0%,
     ${({ theme }) => theme.colors.backgroundAlt} 100%
   );
