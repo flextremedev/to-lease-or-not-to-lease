@@ -17,6 +17,6 @@ describe("CardFooter", () => {
     );
     expect(getByText("Foo")).toHaveStyleRule("height", "112px");
     rerenderWithTheme(rerender, <CardFooter expanded>Foo</CardFooter>);
-    expect(getByText("Foo")).toHaveStyleRule("height", "196px");
+    expect(getByText("Foo")).toHaveStyleRule("height", "322px");
   });
 });
