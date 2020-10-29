@@ -10,7 +10,7 @@ export const CardFooter = styled.div<CardFooterProps>`
   background-color: ${props => props.theme.colors.neutral};
   box-sizing: border-box;
   width: 100%;
-  height: ${props => (props.expanded ? "196px" : "112px")};
+  height: ${props => (props.expanded ? "322px" : "112px")};
   transition: height 350ms ease;
   > div:last-of-type {
     margin-bottom: 0;

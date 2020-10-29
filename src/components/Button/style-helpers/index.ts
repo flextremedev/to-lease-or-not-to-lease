@@ -2,7 +2,7 @@ import { ButtonProps } from "../Button";
 import { ThemedStyledProps } from "styled-components";
 import { Theme } from "../../../theme";
 const boxShadow =
-  "0px 1px 1px 0px rgba(0, 0, 0, 0.21), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 4px 0px rgba(0, 0, 0, 0.33)";
+  "0px 1px 4px 0px rgba(5, 82, 181, 0.21), 0px 2px 8px 0px rgba(5, 82, 181, 0.14), 0px 3px 16px 0px rgba(5, 82, 181, 0.33)";
 export type ButtonStyledProps = ThemedStyledProps<
   Pick<ButtonProps, "variant" | "invertColor">,
   Theme
@@ -34,7 +34,7 @@ export const handleColor = (props: ButtonStyledProps, isActive?: boolean) => {
   if (props.variant === "outline" || props.variant === "text") {
     if (props.variant === "text") {
       if (props.invertColor) {
-        return props.theme.colors.button.foreground.color;
+        return props.theme.colors.button.foreground.colorAlt;
       }
     }
     if (isActive) {
