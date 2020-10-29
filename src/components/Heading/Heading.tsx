@@ -16,6 +16,7 @@ const makeHeadingStyled = (h: number) => {
     font-size: ${props => props.theme.fonts[headingType].fontSize};
     font-family: ${props => props.theme.fonts[headingType].fontFamily};
     font-weight: ${props => props.theme.fonts[headingType].fontWeight};
+    line-height: 1;
     padding: 0;
     margin: 0;
     margin-bottom: ${props =>
@@ -24,6 +25,9 @@ const makeHeadingStyled = (h: number) => {
       !props.invertColor
         ? props.theme.colors.onForeground
         : props.theme.colors.onForegroundAlt};
+    @media (max-width: ${props => props.theme.breakpoints.m}px) {
+      margin-left: ${props => (h === 1 ? props.theme.spaces.xl : 0)};
+    }
   `;
 };
 

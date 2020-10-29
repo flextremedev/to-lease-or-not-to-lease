@@ -13,7 +13,4 @@ export const Page = styled.div`
     rgba(5, 82, 181, 1) 0%,
     rgba(71, 163, 243, 1) 100%
   );
-  @media (max-width: 608px) {
-    padding-top: 16px;
-  }
 `;

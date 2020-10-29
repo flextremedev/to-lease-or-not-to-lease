@@ -1,10 +1,10 @@
 import * as React from "react";
-import { render } from "@testing-library/react";
+import { renderWithTheme } from "../../testing-utils/renderWithTheme";
 import { Splitscreen } from "./Splitscreen";
 
 describe("Splitscreen", () => {
   it("should render", () => {
-    const { getByText } = render(<Splitscreen>Foo</Splitscreen>);
+    const { getByText } = renderWithTheme(<Splitscreen>Foo</Splitscreen>);
     expect(getByText("Foo")).toBeTruthy();
   });
 });
