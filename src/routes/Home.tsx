@@ -57,15 +57,10 @@ export const Home: React.FC = () => {
             <SlideAnimation
               fullWidth={!showResults}
               condition={showResults}
-              yAmount={172}
+              yAmount={208}
               duration={350}
             >
-              <Button
-                fullWidth={!showResults}
-                onClick={calculateResult}
-                variant={showResults ? "text" : "contained"}
-                invertColor={showResults}
-              >
+              <Button onClick={calculateResult} fullWidth>
                 {showResults ? "Recalculate" : "Calculate"}
               </Button>
             </SlideAnimation>

@@ -35,11 +35,21 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   transition: background-color 0.25s ease-in;
   transition: border-color 0.25s ease-in;
   transition: color 0.25s ease-in;
+  :active {
+    background-color: ${props => handleBackground(props, true)};
+    border-color: ${props => handleBorder(props, true, false)};
+    color: ${props => handleColor(props, true)};
+    box-shadow: none;
+    text-shadow: none;
+  }
   :hover {
     box-shadow: ${props => handleBoxShadow(props, true)};
     text-shadow: ${props => handleTextShadow(props)};
     text-decoration: ${props =>
       props.variant === "text" ? "underline" : "none"};
+    /* background-color: ${({ theme }) =>
+      theme.colors.button.background.hover}; */
+    border-color: ${({ theme }) => theme.colors.button.background.hover};
   }
   :focus {
     box-shadow: ${props => handleBoxShadow(props, true)};
@@ -47,13 +57,6 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
     border-color: ${props => handleBorder(props, false, true)};
     text-decoration: ${props =>
       props.variant === "text" ? "underline" : "none"};
-  }
-  :active {
-    background-color: ${props => handleBackground(props, true)};
-    border-color: ${props => handleBorder(props, true, false)};
-    color: ${props => handleColor(props, true)};
-    box-shadow: none;
-    text-shadow: none;
   }
 `;
 export const Button: React.FC<ButtonProps> = ({

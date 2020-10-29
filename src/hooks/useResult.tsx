@@ -73,15 +73,14 @@ export const useResult = (formState: FormState) => {
     Object.keys(resultState).map((resultKey, index: number) => {
       const result = resultState[resultKey as keyof ResultState];
       return (
-        <SlideAnimation
-          condition={showResults}
-          yAmount={-index * 37}
-          useAsFrom
-          duration={350}
-          fullWidth
-          key={`slide-animation-${resultKey}`}
-        >
-          <ComparisonRow>
+        <ComparisonRow key={`comparison-row-${resultKey}`}>
+          <SlideAnimation
+            condition={showResults}
+            yAmount={-index * 37}
+            useAsFrom
+            duration={350}
+            fullWidth
+          >
             <Heading
               h={3}
               style={{
@@ -105,10 +104,8 @@ export const useResult = (formState: FormState) => {
             >
               {isNaN(result["leasing"]) ? "-" : result["leasing"].toFixed(2)}
             </Heading>
-            {/* );
-            })} */}
-          </ComparisonRow>
-        </SlideAnimation>
+          </SlideAnimation>
+        </ComparisonRow>
       );
     });
   const results = renderResults();
