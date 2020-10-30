@@ -14,7 +14,4 @@ export const Paragraph = styled.p<ParagraphProps>`
   margin: ${props => props.theme.spaces.l} 0px ${props => props.theme.spaces.xl}
     0px;
   padding: 0;
-  @media (max-width: ${props => props.theme.breakpoints.m}px) {
-    margin-left: ${props => props.theme.spaces.xl};
-  }
 `;
