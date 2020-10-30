@@ -25,9 +25,6 @@ const makeHeadingStyled = (h: number) => {
       !props.invertColor
         ? props.theme.colors.onForeground
         : props.theme.colors.onForegroundAlt};
-    @media (max-width: ${props => props.theme.breakpoints.m}px) {
-      margin-left: ${props => (h === 1 ? props.theme.spaces.xl : 0)};
-    }
   `;
 };
 
