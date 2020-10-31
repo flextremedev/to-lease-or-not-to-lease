@@ -13,6 +13,7 @@ import { SlideAnimation } from "../components/SlideAnimation/SlideAnimation";
 import { useForm } from "../hooks/useForm";
 import { useResult } from "../hooks/useResult";
 import { styled } from "../theme";
+import { useScrollToButton } from "../hooks/useScrollToButton";
 const Content = styled.div`
   width: 80%;
   max-width: 1024px;
@@ -26,6 +27,12 @@ const Content = styled.div`
 export const Home: React.FC = () => {
   const { formState, financingFields, leasingFields } = useForm();
   const { results, calculateResult, showResults } = useResult(formState);
+  const { buttonRef, scrollToButton } = useScrollToButton();
+  const handleCalculate = () => {
+    calculateResult();
+    scrollToButton();
+  };
+
   return (
     <Page>
       <Content>
@@ -60,7 +67,7 @@ export const Home: React.FC = () => {
               yAmount={208}
               duration={350}
             >
-              <Button onClick={calculateResult} fullWidth>
+              <Button onClick={handleCalculate} fullWidth ref={buttonRef}>
                 {showResults ? "Recalculate" : "Calculate"}
               </Button>
             </SlideAnimation>

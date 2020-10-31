@@ -1,13 +1,15 @@
 import * as React from "react";
 import { renderWithTheme } from "../testing-utils/renderWithTheme";
 import { Home } from "./Home";
-import { fireEvent, cleanup } from "@testing-library/react";
+import { fireEvent, cleanup, act } from "@testing-library/react";
 
 describe("Home", () => {
   afterEach(() => {
     cleanup();
   });
   it("should display correct result for given form values", () => {
+    jest.useFakeTimers();
+    HTMLElement.prototype.scrollIntoView = jest.fn();
     const { getByTestId, getByText } = renderWithTheme(<Home />);
     const finCarPrice = getByTestId("finCarPrice");
     const finInitialPayment = getByTestId("finInitialPayment");
@@ -29,6 +31,10 @@ describe("Home", () => {
     fireEvent.change(leasRuntime, { target: { value: "48" } });
     fireEvent.change(leasMonthlyRate, { target: { value: "544.76" } });
     fireEvent.click(button);
+
+    act(() => jest.advanceTimersByTime(500));
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(1);
+
     expect(getByTestId("totalPrice-financing").textContent).toBe("51679.30");
     expect(getByTestId("totalPrice-leasing").textContent).toBe("-");
 
