@@ -7,7 +7,7 @@ import {
   handleBoxShadow,
   handleTextShadow,
 } from "./style-helpers";
-export type ButtonProps = {
+export type ButtonProps = React.PropsWithChildren<{
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: "contained" | "outline" | "text";
   fullWidth?: boolean;
@@ -15,7 +15,7 @@ export type ButtonProps = {
    * Inverts color of label for text variants.
    */
   invertColor?: boolean;
-};
+}>;
 type ButtonStyledProps = Pick<
   ButtonProps,
   "variant" | "fullWidth" | "invertColor"
@@ -56,21 +56,22 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
       props.variant === "text" ? "underline" : "none"};
   }
 `;
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  variant = "contained",
-  fullWidth,
-  invertColor,
-}) => {
-  return (
-    <ButtonStyled
-      onClick={onClick}
-      variant={variant}
-      fullWidth={fullWidth}
-      invertColor={invertColor}
-    >
-      {children}
-    </ButtonStyled>
-  );
-};
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { children, onClick, variant = "contained", fullWidth, invertColor },
+    ref
+  ) => {
+    return (
+      <ButtonStyled
+        onClick={onClick}
+        variant={variant}
+        fullWidth={fullWidth}
+        invertColor={invertColor}
+        ref={ref}
+      >
+        {children}
+      </ButtonStyled>
+    );
+  }
+);
+Button.displayName = "Button";
