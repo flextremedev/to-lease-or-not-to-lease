@@ -19,7 +19,8 @@
     "test:coverage": "yarn test --coverage --watchAll=false",
     "check-types": "yarn tsc",
     "eject": "react-scripts eject",
-    "lint:fix": "eslint src/**.{ts,tsx} --fix",
+    "lint": "eslint src/**.{ts,tsx}",
+    "lint:fix": "yarn lint --fix",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build"
   },
