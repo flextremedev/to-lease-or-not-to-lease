@@ -8,6 +8,8 @@ before_install:
   - pip install --user codecov
 script:
   - yarn run test:coverage
+  - yarn run check-types
+  - yarn run lint
   - yarn run build
 after_success:
   - codecov --file coverage/lcov.info --disable search
